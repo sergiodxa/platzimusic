@@ -25,7 +25,7 @@ function Artists({ data }) {
         {data.map((item) => {
           if (!item.images[0]) return null;
           return (
-            <Item md={2} key={item.id}>
+            <Item xs={6} sm={3} md={2} key={item.id}>
               <Thumb src={item.images[0].url} />
               <Title>{item.name}</Title>
             </Item>

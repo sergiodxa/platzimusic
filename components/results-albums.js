@@ -7,8 +7,8 @@ const Item = styled(Col)`
 `;
 
 const Thumb = styled.img`
-  height: 155px;
   width: 155px;
+  max-width: 100%;
 `;
 
 const Title = styled.h4`
@@ -30,7 +30,7 @@ function Albums({ data }) {
     <Grid>
       <Row>
         {data.map(item => (
-          <Item md={2} key={item.id}>
+          <Item xs={6} sm={3} md={2} key={item.id}>
             <Thumb src={item.images[0].url} />
             <Title>{item.artists[0].name}</Title>
             <Text>{item.name}</Text>

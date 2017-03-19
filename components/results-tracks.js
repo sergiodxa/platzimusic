@@ -8,8 +8,8 @@ const Item = styled(Row)`
 `;
 
 const Thumb = styled.img`
-  height: 70px;
   width: 70px;
+  max-width: 100%;
 `;
 
 const Title = styled.h4`
@@ -38,16 +38,16 @@ function Tracks({ data }) {
     <Grid>
       {data.map(item => (
         <Item middle="xs" key={item.id}>
-          <Col md={1}>
+          <Col xs={3} sm={2} md={1}>
             <Thumb src={item.album.images[0].url} />
           </Col>
-          <Col md={5}>
+          <Col xs={9} sm={4}>
             <Title>{item.name}</Title>
           </Col>
-          <Col md={5}>
+          <Col xs={11} sm={5}>
             <Text>{item.album.name}</Text>
           </Col>
-          <Col md={1}>
+          <Col xs={1} sm={1}>
             <Text align="center">{formatTime(item.duration_ms)}</Text>
           </Col>
         </Item>
