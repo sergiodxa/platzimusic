@@ -1,0 +1,9 @@
+# dependencies
+node_modules
+
+# built
+.next
+
+# logs
+logs
+*.log
