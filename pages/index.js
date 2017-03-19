@@ -5,7 +5,7 @@ import Form from '../components/form';
 import Hero from '../components/hero';
 import theme from '../lib/theme';
 
-export default class extends Component {
+export default class HomePage extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
 

@@ -10,7 +10,7 @@ import theme from '../lib/theme';
 
 const dev = process.env.NODE_ENV !== 'production';
 
-export default class extends Component {
+export default class ResultsPage extends Component {
   static async getInitialProps({ query }) {
     const url = format({
       protocol: dev ? 'http' : 'https',
