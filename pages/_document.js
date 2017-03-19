@@ -9,7 +9,7 @@ class PlatziMusic extends Document {
     const styles = (
       <style
         dangerouslySetInnerHTML={{ // eslint-disable-line
-          __html: styleSheet.rules().map(rule => rule.cssText).join('\n'),
+          __html: styleSheet.rules().map(rule => rule.cssText.trim()).join('\n'),
         }}
       />
     );
