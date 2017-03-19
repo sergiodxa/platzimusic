@@ -25,33 +25,43 @@ const Text = styled.p`
   margin: 0;
 `;
 
-function Albums({ data }) {
+function Album(props) {
+  return (
+    <Item xs={6} sm={3} md={2}>
+      <Thumb src={item.images[0].url} />
+      <Title>{item.artists[0].name}</Title>
+      <Text>{item.name}</Text>
+    </Item>
+  );
+}
+
+function AlbumList({ data }) {
   return (
     <Grid>
       <Row>
         {data.map(item => (
-          <Item xs={6} sm={3} md={2} key={item.id}>
-            <Thumb src={item.images[0].url} />
-            <Title>{item.artists[0].name}</Title>
-            <Text>{item.name}</Text>
-          </Item>
+          <Album key={item.id} {...item} />
         ))}
       </Row>
     </Grid>
   );
 }
 
-Albums.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    images: PropTypes.arrayOf(PropTypes.shape({
-      url: PropTypes.string.isRequired,
-    })).isRequired,
-    artists: PropTypes.arrayOf(PropTypes.shape({
-      name: PropTypes.string.isRequired,
-    })).isRequired,
+Album.propTypes = {
+  id: PropTypes.string.isRequired,
+  images: PropTypes.arrayOf(PropTypes.shape({
+    url: PropTypes.string.isRequired,
+  })).isRequired,
+  artists: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string.isRequired,
   })).isRequired,
+  name: PropTypes.string.isRequired,
+}
+
+AlbumList.propTypes = {
+  data: PropTypes.arrayOf(
+    PropTypes.shape(Album.propTypes)
+  ).isRequired,
 };
 
-export default Albums;
+export default AlbumList;

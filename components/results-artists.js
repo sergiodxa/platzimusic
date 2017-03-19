@@ -18,32 +18,40 @@ const Title = styled.h4`
   margin: 0;
 `;
 
-function Artists({ data }) {
+function Artist(props) {
+  if (!prosp.images[0]) return null;
+  return (
+    <Item xs={6} sm={3} md={2}>
+      <Thumb src={item.images[0].url} />
+      <Title>{item.name}</Title>
+    </Item>
+  );
+}
+
+function ArtistList({ data }) {
   return (
     <Grid>
       <Row>
-        {data.map((item) => {
-          if (!item.images[0]) return null;
-          return (
-            <Item xs={6} sm={3} md={2} key={item.id}>
-              <Thumb src={item.images[0].url} />
-              <Title>{item.name}</Title>
-            </Item>
-          );
-        })}
+        {data.map((item) => (
+          <Artist key={item.id} {...item} />
+        ))}
       </Row>
     </Grid>
   );
 }
 
-Artists.propTypes = {
-  data: PropTypes.arrayOf({
-    id: PropTypes.string.isRequired,
-    images: PropTypes.arrayOf(PropTypes.shape({
-      url: PropTypes.string.isRequired,
-    })).isRequired,
-    name: PropTypes.string.isRequired,
-  }).isRequired,
+Artist.propTypes = {
+  id: PropTypes.string.isRequired,
+  images: PropTypes.arrayOf(PropTypes.shape({
+    url: PropTypes.string.isRequired,
+  })).isRequired,
+  name: PropTypes.string.isRequired,
 };
 
-export default Artists;
+ArtistList.propTypes = {
+  data: PropTypes.arrayOf(
+    PropTypes.shape(Artist.propTypes)
+  ).isRequired,
+};
+
+export default ArtistList;
