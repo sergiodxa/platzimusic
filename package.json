@@ -9,9 +9,10 @@
     "prebuild": "npm run lint",
     "build": "next build"
   },
-  "keywords": [],
+  "private": true,
+  "keywords": ["react", "redux", "nextjs", "platzi"],
   "author": "Sergio Daniel Xalambrí <sergio@xalambri.xyz> (https://sergio.xalambri.xyz/)",
-  "repository": "sergiodxa/diplomado",
+  "repository": "sergiodxa/platzimusic",
   "license": "MIT",
   "dependencies": {
     "express": "4.15.2",
