@@ -6,7 +6,6 @@
   "scripts": {
     "lint": "eslint \"./**/**/*.js\"",
     "start": "node .",
-    "prebuild": "npm run lint",
     "build": "next build"
   },
   "private": true,
