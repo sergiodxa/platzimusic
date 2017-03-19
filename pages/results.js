@@ -8,12 +8,14 @@ import Form from '../components/form';
 import Section from '../components/results-section';
 import theme from '../lib/theme';
 
+const dev = process.env.NODE_ENV !== 'production';
+
 export default class extends Component {
   static async getInitialProps({ query }) {
     const url = format({
-      protocol: 'http',
-      hostname: 'localhost',
-      port: 3000,
+      protocol: dev ? 'http' : 'https',
+      hostname: dev ? 'localhost' : 'platzi-music.now.sh',
+      port: dev ? 3000 : 443,
       pathname: 'api',
       query: {
         q: query.query,
