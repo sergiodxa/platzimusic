@@ -32,7 +32,7 @@ function renderAndCache(req, res, pagePath, queryParams) {
   const key = req.url;
 
   if (ssrCache.has(key)) {
-    process.stdout.write(`SSR CACHE HIT: ${key}`);
+    process.stdout.write(`SSR CACHE HIT: ${key}\n`);
     res.send(ssrCache.get(key));
     return;
   }
@@ -40,7 +40,7 @@ function renderAndCache(req, res, pagePath, queryParams) {
   app
   .renderToHTML(req, res, pagePath, queryParams)
   .then((html) => {
-    process.stdout.write(`SSR CACHE MISS: ${key}`);
+    process.stdout.write(`SSR CACHE MISS: ${key}\n`);
     ssrCache.set(key, html);
     res.send(html);
   })
@@ -66,7 +66,7 @@ function fetchAndCache(req, res, query) {
   });
 
   if (apiCache.has(key)) {
-    process.stdout.write(`API CACHE HIT: ${key}`);
+    process.stdout.write(`API CACHE HIT: ${key}\n`);
     res.json(JSON.parse(apiCache.get(key)));
     return;
   }
@@ -74,7 +74,7 @@ function fetchAndCache(req, res, query) {
   fetch(key)
     .then(response => response.json())
     .then((data) => {
-      process.stdout.write(`API CACHE MISS: ${key}`);
+      process.stdout.write(`API CACHE MISS: ${key}\n`);
       apiCache.set(key, JSON.stringify(data));
       res.json(data);
     })
