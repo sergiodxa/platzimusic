@@ -19,11 +19,11 @@ const Title = styled.h4`
 `;
 
 function Artist(props) {
-  if (!prosp.images[0]) return null;
+  if (!props.images[0]) return null;
   return (
     <Item xs={6} sm={3} md={2}>
-      <Thumb src={item.images[0].url} />
-      <Title>{item.name}</Title>
+      <Thumb src={props.images[0].url} />
+      <Title>{props.name}</Title>
     </Item>
   );
 }

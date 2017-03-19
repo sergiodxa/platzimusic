@@ -28,9 +28,9 @@ const Text = styled.p`
 function Album(props) {
   return (
     <Item xs={6} sm={3} md={2}>
-      <Thumb src={item.images[0].url} />
-      <Title>{item.artists[0].name}</Title>
-      <Text>{item.name}</Text>
+      <Thumb src={props.images[0].url} />
+      <Title>{props.artists[0].name}</Title>
+      <Text>{props.name}</Text>
     </Item>
   );
 }
