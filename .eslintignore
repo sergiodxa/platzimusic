@@ -1,0 +1,4 @@
+.next/**/*.js
+scripts/**/*.js
+server/**/*.js
+coverage/**/*.js
