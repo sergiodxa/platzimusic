@@ -11,7 +11,7 @@ const handler = app.getRequestHandler();
 
 
 const apiCache = new LRUCache({
-  max: 100,
+  max: 2000,
   maxAge: 1000 * 60 * 60, // 1 hour
 });
 const ssrCache = new LRUCache({
