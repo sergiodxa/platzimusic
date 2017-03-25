@@ -28,6 +28,7 @@ function Section({ title, data, kind }) {
     </Grid>
   );
 }
+Section.displayName = 'Section';
 
 Section.propTypes = {
   title: PropTypes.string.isRequired,

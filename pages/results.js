@@ -7,10 +7,11 @@ import Hero from '../components/hero';
 import Form from '../components/form';
 import Section from '../components/results-section';
 import theme from '../lib/theme';
+import Player from '../components/player';
 
 const dev = process.env.NODE_ENV !== 'production';
 
-export default class ResultsPage extends Component {
+class ResultsPage extends Component {
   static async getInitialProps({ query }) {
     const url = format({
       protocol: dev ? 'http' : 'https',
@@ -32,6 +33,9 @@ export default class ResultsPage extends Component {
     };
   }
 
+  static childContextTypes = {
+    setTrack: PropTypes.func,
+  };
   static propTypes = {
     url: PropTypes.shape({
       query: PropTypes.shape({
@@ -47,8 +51,20 @@ export default class ResultsPage extends Component {
     artists: PropTypes.shape({
       items: PropTypes.arrayOf(PropTypes.object),
     }).isRequired,
+  };
+  state = {
+    currentTrack: false,
   }
-
+  getChildContext() {
+    return {
+      setTrack: this.setTrack,
+    };
+  }
+  setTrack = (track) => {
+    this.setState({
+      currentTrack: track,
+    });
+  }
   handleSubmit = (event) => {
     event.preventDefault();
 
@@ -59,7 +75,6 @@ export default class ResultsPage extends Component {
       },
     });
   }
-
   render() {
     return (
       <ThemeProvider theme={theme}>
@@ -88,8 +103,17 @@ export default class ResultsPage extends Component {
             data={this.props.artists.items}
             kind="artists"
           />
+          {
+            this.state.currentTrack &&
+            <Player
+              visible
+              {...this.state.currentTrack}
+            />
+          }
         </div>
       </ThemeProvider>
     );
   }
 }
+
+export default ResultsPage;
