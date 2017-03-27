@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import styled from 'styled-components';
 import { Grid, Row, Col } from 'react-styled-flexboxgrid';
+import PlayerArtist from './player-artist';
 
 const Wrapper = styled.section`
   position: fixed;
@@ -12,21 +13,45 @@ const Wrapper = styled.section`
   box-shadow: 0 -4px 8px 0 rgba(0, 0, 0, 0.05);
 `;
 
-const Artist = styled.div`
-  background: red;
-`;
+
 const Line = styled.div`
   width: 100%;
   height: 5px;
-  background: gray;
+  background: #e1e5f0;
   position: relative;
+  margin-top: 1em;
 `;
 const CurrentTime = styled.div`
-  background: blue;
+  background: #5179ff;
   height: inherit;
   left: 0;
   position: absolute;
   width: ${props => props.width}%;
+`;
+
+const Button = styled.button`
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 20px;
+`;
+const Play = styled(Button)`
+  font-size: 50px;
+`;
+
+const Timer = styled.span`
+  color: ${props => props.theme.color.grayB};
+`;
+const Buttons = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  /*padding: 1em 0;*/
+`;
+const PlayerUI = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 1em 0;
 `;
 
 class Player extends Component {
@@ -36,12 +61,19 @@ class Player extends Component {
   state = {
     duration: 0,
     currentTime: 0,
+    paused: true,
   }
   handleTogglePlay = (event) => {
     event.preventDefault();
     if (this.audio.paused) {
+      this.setState({
+        paused: false,
+      });
       this.audio.play();
     } else {
+      this.setState({
+        paused: true,
+      });
       this.audio.pause();
     }
   }
@@ -83,46 +115,44 @@ class Player extends Component {
     return (
       <Wrapper>
         <Grid>
-          <Row>
+          <Row bottom="xs">
             <Col xs={5}>
-              <Row>
-                <Col xs={3}>
-                  <img
-                    src={this.props.album.images[0].url}
-                    alt={this.props.name}
-                    width="70"
-                    height="70"
-                  />
-                </Col>
-                <Col xs={9}>
-                  <p>{this.props.name}</p>
-                  <p>{this.props.album.name}</p>
-                </Col>
-              </Row>
+              <PlayerArtist {...this.props} />
             </Col>
             <Col xs={7}>
-              <audio
-                src={this.props.preview_url}
-                ref={(audio) => { this.audio = audio; }}
-                onProgress={this.onProgress}
-                onTimeUpdate={this.onTimeUpdate}
-                onLoadedMetadata={this.onLoadedMetadata}
-                onPause={this.handlePause}
-                onPlay={this.onPlay}
-                onDurationChange={this.onDurationChange}
-              />
-              <button>anterior</button>
-              <button onClick={this.handleTogglePlay}>play</button>
-              <button>siguiente</button>
-              <div>
-                {this.formattedTime(this.state.currentTime)}
-              </div>
-              <div>
-                {this.formattedTime(this.state.duration)}
-              </div>
-              <Line>
-                <CurrentTime width={this.state.progress} />
-              </Line>
+              <PlayerUI>
+                <audio
+                  src={this.props.preview_url}
+                  ref={(audio) => { this.audio = audio; }}
+                  onProgress={this.onProgress}
+                  onTimeUpdate={this.onTimeUpdate}
+                  onLoadedMetadata={this.onLoadedMetadata}
+                  onPause={this.handlePause}
+                  onPlay={this.onPlay}
+                  onDurationChange={this.onDurationChange}
+                />
+                <Buttons>
+                  <Timer>
+                    {this.formattedTime(this.state.currentTime)}
+                  </Timer>
+                  <div>
+                    <Button className="icon-previous">anterior</Button>
+                    <Play
+                      className={this.state.paused ? 'icon-play' : 'icon-pause'}
+                      onClick={this.handleTogglePlay}
+                    >
+                      {this.state.paused ? <span>play</span> : <span>pause</span>}
+                    </Play>
+                    <Button className="icon-next">siguiente</Button>
+                  </div>
+                  <Timer>
+                    {this.formattedTime(this.state.duration)}
+                  </Timer>
+                </Buttons>
+                <Line>
+                  <CurrentTime width={this.state.progress} />
+                </Line>
+              </PlayerUI>
             </Col>
           </Row>
         </Grid>

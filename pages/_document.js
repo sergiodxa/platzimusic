@@ -26,6 +26,7 @@ class PlatziMusic extends Document {
             name="viewport"
             content="width=device-width, initial-scale=1.0"
           />
+          <link rel="stylesheet" href="/static/fonts.css" />
           <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css"

@@ -4,6 +4,8 @@ import Router from 'next/router';
 import Form from '../components/form';
 import Hero from '../components/hero';
 import theme from '../lib/theme';
+import '../components/fonts.js';
+
 
 export default class HomePage extends Component {
   handleSubmit = (event) => {
