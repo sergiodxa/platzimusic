@@ -31,19 +31,19 @@ export const fonts = injectGlobal`
   }
 
  .icon-arrow-top:before {
-   content: "\e900";
+   content: "\\e900";
  }
  .icon-next:before {
-   content: "\e901";
+   content: "\\e901";
  }
  .icon-previous:before {
-   content: "\e902";
+   content: "\\e902";
  }
  .icon-pause:before {
-   content: "\e903";
+   content: "\\e903";
  }
  .icon-play:before {
-   content: "\e904";
+   content: "\\e904";
  }
 
 `;

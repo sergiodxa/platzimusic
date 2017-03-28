@@ -34,6 +34,8 @@ const Button = styled.button`
   background: none;
   border: none;
   font-size: 20px;
+  color: ${props => props.theme.color.grayB};
+  outline: 0;
 `;
 const Play = styled(Button)`
   font-size: 50px;
@@ -111,10 +113,14 @@ class Player extends Component {
     const seconds = parseInt(totalSeconds % 60, 10);
     return `${minutes}:${this.leftPad(seconds.toString())}`;
   }
+  handleExpandClick = (event) => {
+
+  }
   render() {
     return (
       <Wrapper>
         <Grid>
+          <button onClick={this.handleExpandClick}>expandir</button>
           <Row bottom="xs">
             <Col xs={5}>
               <PlayerArtist {...this.props} />
@@ -136,14 +142,12 @@ class Player extends Component {
                     {this.formattedTime(this.state.currentTime)}
                   </Timer>
                   <div>
-                    <Button className="icon-previous">anterior</Button>
+                    <Button className="icon-previous" />
                     <Play
                       className={this.state.paused ? 'icon-play' : 'icon-pause'}
                       onClick={this.handleTogglePlay}
-                    >
-                      {this.state.paused ? <span>play</span> : <span>pause</span>}
-                    </Play>
-                    <Button className="icon-next">siguiente</Button>
+                    />
+                    <Button className="icon-next" />
                   </div>
                   <Timer>
                     {this.formattedTime(this.state.duration)}
