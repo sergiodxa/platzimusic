@@ -1,6 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import styled from 'styled-components';
 import { Row, Col } from 'react-styled-flexboxgrid';
+import { connect } from 'react-redux';
 
 const Item = styled(Row)`
   border-bottom: 1px solid #e1e5f0;
@@ -46,12 +47,28 @@ class Track extends Component {
       name: PropTypes.string.isRequired,
     }).isRequired,
     duration_ms: PropTypes.number.isRequired,
+    dispatch: PropTypes.func.isRequired,
   };
   static contextTypes = {
     setTrack: PropTypes.func,
   }
-  handleClick = (event) => {
-    this.context.setTrack(this.props);
+  handleClick = () => {
+    // this.context.setTrack(this.props);
+    this.props.dispatch({
+      type: 'SET_PLAYLIST',
+      payload: {
+        data: [{ ...this.props }],
+      },
+    });
+    this.props.dispatch({
+      type: 'SET_ALBUM_DATA',
+      payload: {
+        data: {
+          name: this.props.album.name,
+          image: this.props.album.images[0].url,
+        },
+      },
+    });
   }
   render() {
     return (
@@ -73,4 +90,4 @@ class Track extends Component {
   }
 }
 
-export default Track;
+export default connect(null)(Track);

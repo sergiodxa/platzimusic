@@ -9,6 +9,7 @@ const Item = styled(Col)`
 const Thumb = styled.img`
   height: 125px;
   width: 125px;
+  object-fit: cover;
 `;
 
 const Title = styled.h4`

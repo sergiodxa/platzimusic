@@ -33,6 +33,9 @@ export const fonts = injectGlobal`
  .icon-arrow-top:before {
    content: "\\e900";
  }
+ .icon-arrow-bottom:before {
+   content: "\\e905";
+ }
  .icon-next:before {
    content: "\\e901";
  }
@@ -44,6 +47,30 @@ export const fonts = injectGlobal`
  }
  .icon-play:before {
    content: "\\e904";
+ }
+
+ .fade-appear {
+  opacity: 0;
+  transition: .3s;
+ }
+ .fade-appear-active {
+  opacity: 1;
+ }
+
+ .fade-enter {
+  opacity: 0;
+  transition: .3s;
+ }
+ .fade-enter-active {
+  opacity: 1;
+ }
+
+ .fade-leave {
+  opacity: 1;
+  transition: .3s;
+ }
+ .fade-leave-active {
+  opacity: .2;
  }
 
 `;

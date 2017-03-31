@@ -2,17 +2,37 @@ import React, { Component, PropTypes } from 'react';
 import { ThemeProvider } from 'styled-components';
 import fetch from 'isomorphic-fetch';
 import { format } from 'url';
+import withRedux from 'next-redux-wrapper';
+import { createStore } from 'redux';
+import { fromJS } from 'immutable';
 import Router from 'next/router';
 import Hero from '../components/hero';
 import Form from '../components/form';
 import Section from '../components/results-section';
 import theme from '../lib/theme';
 import Player from '../components/player';
+import reducer from '../reducers/index';
 
 const dev = process.env.NODE_ENV !== 'production';
 
+const data = {
+  playlist: [],
+  currentTrack: 0,
+};
+
+const makeStore = (initialState = data) => {
+  return createStore(reducer, fromJS(initialState));
+}
+
+async function search(url) {
+  const response = await fetch(url);
+  return {
+    payload: await response.json(),
+  };
+}
+
 class ResultsPage extends Component {
-  static async getInitialProps({ query }) {
+  static async getInitialProps({ store, query }) {
     const url = format({
       protocol: dev ? 'http' : 'https',
       hostname: dev ? 'localhost' : 'platzi-music.now.sh',
@@ -23,14 +43,15 @@ class ResultsPage extends Component {
         type: 'album,track,artist',
       },
     });
+    const action = await search(url);
+    store.dispatch({
+      type: 'SET_SEARCH',
+      payload: {
+        data: action.payload,
+      },
+    });
 
-    const response = await fetch(url);
-
-    const data = await response.json();
-
-    return {
-      ...data,
-    };
+    return { ...action.payload };
   }
 
   static childContextTypes = {
@@ -82,7 +103,6 @@ class ResultsPage extends Component {
           <Hero small>
             <Form
               onSubmit={this.handleSubmit}
-              defaultValue={this.props.url.query.query}
             />
           </Hero>
 
@@ -110,10 +130,14 @@ class ResultsPage extends Component {
               {...this.state.currentTrack}
             />
           }
+
+          <Player
+            visible
+          />
         </div>
       </ThemeProvider>
     );
   }
 }
 
-export default ResultsPage;
+export default withRedux(makeStore)(ResultsPage);
