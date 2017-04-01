@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test Form component should render with default value the expected HTML 1`] = `
+<form
+  action="/results"
+  method="GET"
+  onSubmit={[Function]}
+>
+  <div
+    className="eEhaii"
+  >
+    <div
+      className="gTtEZJ"
+    >
+      <input
+        autoFocus={true}
+        className="hQNAuW"
+        defaultValue="Testing"
+        name="query"
+        placeholder="Busca por canción, artista o album"
+        type="search"
+      />
+    </div>
+    <div
+      className="gOMjZh"
+    >
+      <button
+        className="hSBnIA"
+      >
+        Buscar
+      </button>
+    </div>
+  </div>
+</form>
+`;
+
+exports[`Test Form component should render without default value the expected HTML 1`] = `
+<form
+  action="/results"
+  method="GET"
+  onSubmit={[Function]}
+>
+  <div
+    className="eEhaii"
+  >
+    <div
+      className="gTtEZJ"
+    >
+      <input
+        autoFocus={true}
+        className="hQNAuW"
+        defaultValue=""
+        name="query"
+        placeholder="Busca por canción, artista o album"
+        type="search"
+      />
+    </div>
+    <div
+      className="gOMjZh"
+    >
+      <button
+        className="hSBnIA"
+      >
+        Buscar
+      </button>
+    </div>
+  </div>
+</form>
+`;
