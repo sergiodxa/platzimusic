@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test Hero component should render with small the expected HTML 1`] = `
+<div
+  className="bvTdkS"
+>
+  <div
+    className="kfsALc"
+  >
+    <div>
+      <h1
+        className="lkuQWA"
+      >
+        <a
+          href="/"
+          onClick={[Function]}
+        >
+          <strong>
+            Platzi
+          </strong>
+          Music
+        </a>
+      </h1>
+    </div>
+    <div>
+      testing with small
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Test Hero component should render without small the expected HTML 1`] = `
+<div
+  className="eiCoQH"
+>
+  <div
+    className="kfsALc"
+  >
+    <div>
+      <h1
+        className="leapIt"
+      >
+        <a
+          href="/"
+          onClick={[Function]}
+        >
+          <strong>
+            Platzi
+          </strong>
+          Music
+        </a>
+      </h1>
+      <h2
+        className="gpBNgN"
+      >
+        Tu música sin límites
+      </h2>
+    </div>
+    <div>
+      testing without small
+    </div>
+  </div>
+</div>
+`;
