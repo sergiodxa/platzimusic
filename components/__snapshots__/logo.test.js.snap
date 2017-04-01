@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test Logo component should render with small the expected HTML 1`] = `
+<div>
+  <h1
+    className="lkuQWA"
+  >
+    <a
+      href="/"
+      onClick={[Function]}
+    >
+      <strong>
+        Platzi
+      </strong>
+      Music
+    </a>
+  </h1>
+</div>
+`;
+
+exports[`Test Logo component should render without small the expected HTML 1`] = `
+<div>
+  <h1
+    className="leapIt"
+  >
+    <a
+      href="/"
+      onClick={[Function]}
+    >
+      <strong>
+        Platzi
+      </strong>
+      Music
+    </a>
+  </h1>
+  <h2
+    className="gpBNgN"
+  >
+    Tu música sin límites
+  </h2>
+</div>
+`;
